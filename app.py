@@ -14,31 +14,54 @@ mongo = PyMongo(app)
 users = mongo.db.users
 app.secret_key = 'your_secret_key' 
 
+@app.route('/home', methods=['GET','POST'])
+def home():
+    return render_template('home.html')
+
+
+
+
+@app.route('/add_events', methods=['GET','POST'])
+def add_events():
+    return render_template('add-event.html')
+
+@app.route('/all_events', methods=['GET','POST'])
+def all_events():
+    return render_template('listing-list.html')
+
 
 @app.route('/signup', methods=['POST'])
 def signup():
     name = request.form.get('name')
     email = request.form.get('email')
     password = request.form.get('pass')
-    print("User for register : ",email, name, password)
+    # print("User for register : ", email, name, password)
     # Check if user already exists
     user_exists = users.find_one({'email': email})
     if user_exists:
         return jsonify({"error": "User already exists"}), 400
     hashed_password = generate_password_hash(password)
     user_id = users.insert_one({'name': name, 'email': email, 'password': hashed_password}).inserted_id
-    return jsonify({'message': 'User created successfully', 'user_id': str(user_id)}), 201
+    flash('User created successfully. Please log in.', 'success')
+    return redirect(url_for('index'))
+
+
 
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form.get('your_name')  
     password = request.form.get('your_pass')
-    print("user for login : ", email, password)
+    # print("user for login : ", email, password)
     user = users.find_one({'email': email})
     if user and check_password_hash(user['password'], password):
         session['email'] = email  
         return redirect(url_for('profile'))  # Redirecting to profile page
     return jsonify({'error': 'Invalid username/password'}), 401
+
+@app.route('/venue_saved')
+def venue_saved():
+    val = {'status':200, 'message': 'Your event/venue is created/saved'}
+    return jsonify(val)
 
 @app.route('/')
 def index():
@@ -53,7 +76,7 @@ def profile():
     user_info = users.find_one({'email': user_email}, {'_id': 0, 'password': 0})
     if not user_info:
         return "User not found", 404
-    print(user_info)
+    # print(user_info)
     return render_template('profile.html', user=user_info)
 
 @app.route('/update_profile', methods=['POST'])
@@ -65,6 +88,7 @@ def update_profile():
         return redirect(url_for('login'))
 
     user_updates = request.form.to_dict()
+    print("Updates: ",user_updates)
     update_result = users.update_one({'email': user_email}, {'$set': user_updates})
 
     if update_result.modified_count == 0:
@@ -78,6 +102,7 @@ def update_profile():
 
 @app.route('/signout')
 def signout():
+    # flash('User created successfully. Please log in.', 'success')
     # Clear the user's session
     session.clear()
     # Redirect to the login page or homepage
