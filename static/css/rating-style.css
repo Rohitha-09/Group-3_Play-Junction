@@ -1,0 +1,20 @@
+i,
+span {
+  font-size: 1.25em;
+}
+i {
+  display: inline-block;
+}
+/* .container:hover i {
+  color: #fc0;
+}
+.container i:hover {
+  color: #fc0;
+} */
+.star-container i:hover ~ i {
+  color: black;
+}
+
+.container {
+  text-align: center;
+}
