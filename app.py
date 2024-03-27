@@ -18,7 +18,9 @@ app.secret_key = 'your_secret_key'
 def home():
     return render_template('home.html')
 
-
+@app.route('/ratings', methods=['GET','POST'])
+def ratings():
+    return render_template('ratings.html')
 
 
 @app.route('/add_events', methods=['GET','POST'])
