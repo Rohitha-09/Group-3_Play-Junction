@@ -397,6 +397,10 @@ input[type=checkbox]:not(old):checked + label > span:before {
   display: inline-block;
   width: auto; }
 
+.sub{
+  padding-bottom: 0.5rem;
+}
+
 label {
   position: absolute;
   left: 0;
