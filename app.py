@@ -22,7 +22,10 @@ def home():
 def ratings():
     return render_template('ratings.html')
 
-
+@app.route('/MyBookings', methods=['GET','POST'])
+def ratings():
+    return render_template('mybookings.html')
+    
 @app.route('/add_events', methods=['GET','POST'])
 def add_events():
     return render_template('add-event.html')
