@@ -77,7 +77,6 @@ def profile():
     user_email = session.get('email')
     if user_email is None:
         return redirect(url_for('login'))
-
     user_info = users.find_one({'email': user_email}, {'_id': 0, 'password': 0})
     if not user_info:
         return "User not found", 404
