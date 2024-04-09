@@ -37,18 +37,14 @@ def all_events():
 
 @app.route('/signup', methods=['POST'])
 def signup():
-    name = request.form.get('name')
-    email = request.form.get('email')
-    password = request.form.get('pass')
-    # print("User for register : ", email, name, password)
-    # Check if user already exists
-    user_exists = users.find_one({'email': email})
-    if user_exists:
+    name, email, password = request.form.get('name'), request.form.get('email'), request.form.get('pass')
+    if users.find_one({'email': email}):
         return jsonify({"error": "User already exists"}), 400
     hashed_password = generate_password_hash(password)
-    user_id = users.insert_one({'name': name, 'email': email, 'password': hashed_password}).inserted_id
+    users.insert_one({'name': name, 'email': email, 'password': hashed_password})
     flash('User created successfully. Please log in.', 'success')
     return redirect(url_for('index'))
+
 
 
 
