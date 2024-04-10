@@ -45,9 +45,6 @@ def signup():
     flash('User created successfully. Please log in.', 'success')
     return redirect(url_for('index'))
 
-
-
-
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form.get('your_name')  
