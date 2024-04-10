@@ -40,10 +40,10 @@ def signup():
     name, email, password = request.form.get('name'), request.form.get('email'), request.form.get('pass')
     if users.find_one({'email': email}):
         return jsonify({"error": "User already exists"}), 400
-    hashed_password = generate_password_hash(password)
-    users.insert_one({'name': name, 'email': email, 'password': hashed_password})
+    users.insert_one({'name': name, 'email': email, 'password': generate_password_hash(password)})
     flash('User created successfully. Please log in.', 'success')
     return redirect(url_for('index'))
+
 
 @app.route('/login', methods=['POST'])
 def login():
