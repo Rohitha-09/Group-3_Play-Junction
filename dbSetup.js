@@ -17,6 +17,22 @@ const userData = [
       { sportName: "Volleyball", skillLevel: "Intermediate" }
     ]
   },
+    const userData = [
+{
+    userId: 'UID1',
+    email: "janeed.smith@example.com",
+    password: "SecuredPassw0rd",
+    name: "Janeed Smith",
+    gender: 'Male',
+    phoneNumber:"9123465789",
+    profileStatus: 'Completed',
+    interests: "Yoga, Hiking",
+    about: "Enjoying outdoor activities and staying active!",
+    skillLevels: [
+      { sportName: "Tennis", skillLevel: "Advanced" },
+      { sportName: "Volleyball", skillLevel: "Intermediate" }
+    ]
+  },
   {
     userId: 'UID2', // Generate a new ObjectID
     email: "john.doe@example.com",
