@@ -1,51 +1,25 @@
-const express = require('express');
-const routing = express.Router();
-const service = require('../service/eventrating');
+const collection = require('../Utilities/connection');
+const eventRating = {};
 
-// To verify the credentials of user
-routing.get(
-    '/get-all-event-ratings',
-    (req, res, next) => {
+eventRating.getAllEventRatings = () => {
+    return collection.getCollection().then((users) => {
+        return collection.getEventCollection().then((events) => {
+            return collection.getEventRatingCollection().then((eventRating) => {
+                return eventRating.find({}).populate('reviewerId').populate('eventId').then((results) => {
+                    return results;
+                })
+            })
+        })
 
-        service.getAllEventRatings().then(item => {
-            // Console.log( item )
-            res.json(item);
-        }).
-            catch(err => {
-                next(err);
-            });
-    }
-);
+    })
+}
 
-routing.put(
-    '/register-new-event-rating',
-    (req, res, next) => {
-        const eventId = req.body.eventId;
-        const reviewerId = req.body.reviewerId;
-        const review = req.body.review;
-        const reviewTitle = req.body.reviewTitle;
-        const reviewDetail = req.body.reviewDetail;
-        const gallery = req.body.gallery;
-        const reviewDate = req.body.reviewDate;
+eventRating.insertNewRating=(data)=>{
+    return collection.getEventRatingCollection().then((eventRating)=>{
+        return eventRating.insertMany([data]).then((results)=>{
+            return results;
+        })
+    })
+}
 
-        console.log('Inside controller');
-
-        service.insertEventRating({
-            "eventId": eventId,
-            "reviewerId": reviewerId,
-            "review": review,
-            "reviewTitle": reviewTitle,
-            "reviewDetail": reviewDetail,
-            "gallery": gallery,
-            "reviewDate": reviewDate
-        }).then(item => {
-            console.log(item)
-            res.json(item);
-        }).
-            catch(err => {
-                next(err);
-            });
-    }
-);
-
-module.exports = routing;
+module.exports = eventRating;
