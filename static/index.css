@@ -1,9 +1,0 @@
-/* Example to ensure sections are only displayed when active */
-.signup, .sign-in {
-    display: none; /* Hide sections by default */
-}
-
-/* Initial state when one of them should be shown */
-.signup { /* Assuming you want the signup form to be shown first */
-    display: block;
-}
