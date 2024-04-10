@@ -56,6 +56,7 @@ def login():
         return redirect(url_for('profile'))  # Redirecting to profile page
     return jsonify({'error': 'Invalid username/password'}), 401
 
+
 @app.route('/venue_saved')
 def venue_saved():
     val = {'status':200, 'message': 'Your event/venue is created/saved'}
