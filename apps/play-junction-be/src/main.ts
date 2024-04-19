@@ -13,30 +13,47 @@ const userRatingsRouting = require('./routes/userrating');
 const bookingRouting = require('./routes/booking');
 
 
-app.use( router );
+// Import necessary modules
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const create = require('./create'); // Assuming create module is defined in a separate file
+const { requestLogger, errorLogger } = require('./logger'); // Assuming logger module is defined in a separate file
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+// Initialize express app
+const app = express();
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+// Define middleware
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
-
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(requestLogger);
-// app.use('/', prodRoute);
+
+// Define routes
+const router = express.Router();
+
+router.get("/setupDB", async (req, res, next) => {
+  try {
+    const response = await create.setupDB();
+    if (response) {
+      res.json({ message: `Successfully inserted ${response} documents into the database` });
+    }
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Use middleware and router
+app.use(router);
 app.use(errorLogger);
 
-router.get( "/setupDB", ( req, res, next ) => {
-  create.setupDB().then( response =>{
-      if ( response ) res.json( { message: "Successfully inserted "+ response +" documents into database"} )
-  } ).catch( error =>{
-     next( error );
-  } )
-} );
+// Set up server
+const host = process.env.HOST ?? 'localhost';
+const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+
+app.listen(port, host, () => {
+  console.log(`Server is running on http://${host}:${port}`);
+});
 
 app.use('/v1/user', userRoute);
 app.use('/v1/events', eventRoute);
