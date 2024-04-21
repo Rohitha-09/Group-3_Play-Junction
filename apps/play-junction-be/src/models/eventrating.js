@@ -22,4 +22,5 @@ eventRating.insertNewRating=(data)=>{
     })
 }
 
+
 module.exports = eventRating;
