@@ -17,4 +17,5 @@ booking.insertNewBooking=(data)=>{
     })
 }
 
+
 module.exports = booking;
