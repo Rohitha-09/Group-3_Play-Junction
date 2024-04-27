@@ -22,6 +22,7 @@ events.getEventsList = () => {
     })
 }
 
+
 // Verify the user credentials and modify the last logout
 events.getEventById = (eventId) => {
     return collection.getCollection().then((users)=>{
