@@ -36,7 +36,6 @@ const userData = [
 ];
 
 const create = {}
-
 create.setupDB = () => {
     return collection.getCollection().then(userColl => {
         return userColl.deleteMany().then(() => {
