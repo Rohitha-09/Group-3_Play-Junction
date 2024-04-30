@@ -9,7 +9,7 @@ const routes: Routes = [
         (m) => m.FeatureModuleModule
       ),
   },
-];
+]; 
 
 @NgModule({
   imports: [
