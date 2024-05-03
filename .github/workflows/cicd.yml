@@ -2,8 +2,9 @@ name: Deploy to Azure App Service - Play Junction
 
 on:
   push:
-    branches:
+    branches: 
       - Test
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -13,32 +14,31 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v2
-        with:
+        uses: actions/setup-node@v4
+        with: 
           node-version: '18.x'
-
-      - name: Install dependencies and build
-        run: |
+        
+      - name: npm install, build, and test  
+        run: |  
           npm install && npm i -g nx && nx run-many --target=build --projects=play-junction-be,play-junction-fe
+           
 
-
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2
-        with:
+      - name: Upload artifact for deployment job  
+        uses: actions/upload-artifact@v3  
+        with:  
+            name: node-app  
+            path: dist
+           
+      - name: Download artifact from build job  
+        uses: actions/download-artifact@v3  
+        with:  
           name: node-app
-          path: dist
-
-
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: node-app
-
-      - name: 'Deploy to Azure Web App (Develop)'
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'Play-Junction-Test'
-          slot-name: 'Production'
-          publish-profile: ${{secrets.AZURE_WEBAPP_PUBLISH_PROFILE_TEST}}
-          package: .
-  
+          
+      - name: 'Deploy to Azure Web App'  
+        id: deploy-to-webapp  
+        uses: azure/webapps-deploy@v2  
+        with:  
+          app-name: 'Play-Junction-Test'  
+          slot-name: 'Production'  
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_TEST }}  
+          package: .  
