@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default {
   displayName: 'play-junction-fe',
   preset: '../../jest.preset.js',

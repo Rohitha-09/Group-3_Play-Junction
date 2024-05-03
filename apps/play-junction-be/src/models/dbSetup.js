@@ -1,7 +1,6 @@
 const collection = require('../Utilities/connection');
 const commonObjects = require('./common');
 
-
 const userData = [
 {
     userId: 'UID1',
@@ -36,6 +35,7 @@ const userData = [
 ];
 
 const create = {}
+
 create.setupDB = () => {
     return collection.getCollection().then(userColl => {
         return userColl.deleteMany().then(() => {

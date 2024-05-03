@@ -24,27 +24,9 @@
                 <div class="sortby-filter-group court-sortby">
                   <div class="sortbyset week-bg">
                     <div class="sorting-select coach-booking-mat">
-                      <mat-select [(ngModel)]="selectedValue1"  [ngModelOptions]="{standalone: true}" class="select"  placeholder="This Week">
-                        @for (data of selectedList1; track data) {
-                          <mat-option [value]="data.value">
-                            {{data.value}}
-                          </mat-option>
-                        }
-                      </mat-select>
                     </div>
                   </div>
-                  <div class="sortbyset">
-                    <span class="sortbytitle">Sort By</span>
-                    <div class="sorting-select">
-                      <mat-select [(ngModel)]="selectedValue2"  [ngModelOptions]="{standalone: true}" class="select"  placeholder="Relevance">
-                        @for (data of selectedList2; track data) {
-                          <mat-option [value]="data.value">
-                            {{data.value}}
-                          </mat-option>
-                        }
-                      </mat-select>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -70,31 +52,11 @@
                   <div class="col-md-6">
                     <div class="coach-active-blk">
                       <div class="dataTables_filter">
-                        <label>
-                          <input
-                            [(ngModel)]="searchDataValue"
-                            (ngModelChange)="searchData(searchDataValue)"
-                            class="form-control"
-                            placeholder="Search..."
-                            />
-                          </label>
+                       
                         </div>
                         <div class="card-header-btns">
                           <nav>
-                            <div class="nav nav-tabs" role="tablist">
-                              <button class="nav-link active" id="nav-Recent-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-Recent"
-                                type="button" role="tab" aria-controls="nav-Recent"
-                                aria-selected="true">
-                                Court
-                              </button>
-                              <button class="nav-link" id="nav-RecentCoaching-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-RecentCoaching"
-                                type="button" role="tab" aria-controls="nav-RecentCoaching"
-                                aria-selected="false">
-                                Coaching
-                              </button>
-                            </div>
+                            
                           </nav>
                         </div>
                       </div>
@@ -117,7 +79,6 @@
                             </th>
                             <th mat-sort-header="payment">Payment</th>
                             <th mat-sort-header="details">Details</th>
-                            <th mat-sort-header="chat">Chat</th>
                             <th></th>
                           </tr>
                         </thead>
@@ -166,8 +127,7 @@
                                   class="feather icon-eye"></i>{{ data.details }}</a>
                                 </td>
                                 <td>
-                                  <img src="assets/img/icons/chat-icon-01.svg" class="me-1"
-                                    alt="Icon" />{{ data.chat }}
+                              
                                   </td>
                                   <td class="text-end">
                                     <div class="dropdown dropdown-action table-drop-action">

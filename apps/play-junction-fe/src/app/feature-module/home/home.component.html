@@ -23,44 +23,7 @@
             <h4>Wide range of sports</h4>
             <h1>Choose Your <span>Sport</span> and Start Playing</h1>
             <p class="sub-info">Unleash Your Athletic Potential</p>
-            <div class="search-box">
-              <form action="coaches-grid.html">
-                <div class="w-100 line">
-                  <div class="form-group mb-0">
-                    <label>Search for</label>
-
-                    <mat-select   [(ngModel)]="selectedValue1"
-                       [ngModelOptions]="{standalone: true}" class="select"
-                       placeholder="Sports">
-                      @for (data of selectedList1; track data) {
-                      <mat-option [value]="data.value">
-                        {{data.value}}
-                      </mat-option>
-                      }
-                    </mat-select>
-                  </div>
-                </div>
-                <!-- <div class="search-input">
-                  <div class="form-group mb-0">
-                    <label>Where </label>
-                    <mat-select   [(ngModel)]="selectedValue2"
-                       [ngModelOptions]="{standalone: true}" class="select "
-                       placeholder="Choose Location">
-                      @for (data of selectedList2; track data) {
-                      <mat-option [value]="data.value">
-                        {{data.value}}
-                      </mat-option>
-                      }
-                    </mat-select>
-
-                  </div>
-                </div> -->
-                <div class="search-btn">
-                  <button class="btn" type="submit"><i class="feather icon-search"></i><span
-                      class="search-text">Search</span></button>
-                </div>
-              </form>
-            </div>
+            
           </div>
         </div>
         <div class="col-lg-5">

@@ -11,9 +11,9 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "dist/apps/play-junction-be",
+        "outputPath": "dist/play-junction-be",
         "format": ["cjs"],
-        "bundle": false,
+        "bundle": true,
         "main": "apps/play-junction-be/src/main.ts",
         "tsConfig": "apps/play-junction-be/tsconfig.app.json",
         "assets": ["apps/play-junction-be/src/assets"],
@@ -41,7 +41,7 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "play-junction-be:build"
+        "buildTarget": "play-junction:build"
       },
       "configurations": {
         "development": {

@@ -1,5 +1,6 @@
 {
   "name": "play-junction-fe",
+  "version": "0.0.0",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
@@ -10,7 +11,7 @@
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/play-junction-fe",
+        "outputPath": "dist/play-junction-fe",
         "index": "apps/play-junction-fe/src/index.html",
         "browser": "apps/play-junction-fe/src/main.ts",
         "polyfills": ["zone.js"],
@@ -30,7 +31,6 @@
           "node_modules/ngx-bootstrap/datepicker/bs-datepicker.scss",
           "node_modules/ngx-lightbox/lightbox.css",
           "apps/play-junction-fe/src/styles.scss"
-         
         ],
         "scripts": [
           "node_modules/aos/dist/aos.js",
@@ -44,7 +44,7 @@
             {
               "type": "initial",
               "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumError": "3mb"
             },
             {
               "type": "anyComponentStyle",

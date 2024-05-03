@@ -1208,13 +1208,13 @@ export class DataService {
       page: 'dashboard',
       span: false,
     },
-    {
+    /*{
       title: 'Courts',
       img: 'assets/img/icons/court-icon.svg',
       route: routes.coachCourts,
       page: 'courts',
       span: false,
-    },
+    },*/
     {
       title: 'Requests',
       img: 'assets/img/icons/request-icon.svg',
@@ -1611,7 +1611,7 @@ export class DataService {
   ];
   public listinggridsidebar = [
     {
-      fees: '$450',
+      fees: '$300',
       img1: 'assets/img/venues/venues-01.jpg',
       time: '/hr',
       points: '4.2',

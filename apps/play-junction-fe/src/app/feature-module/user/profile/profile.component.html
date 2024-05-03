@@ -76,18 +76,6 @@
             </div>
             <div class="col-lg-4 col-md-4">
               <div class="input-space">
-                <mat-select [(ngModel)]="selectedSportLevel" [ngModelOptions]="{standalone: true}" class="search-box select"
-                  placeholder="Sport">
-                  @for (data of sportsList; track data) {
-                  <mat-option [value]="data.value">
-                    {{data.value}}
-                  </mat-option>
-                  }
-                </mat-select>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <div class="input-space">
                 <mat-select [(ngModel)]="selectedExpertiseLevel" [ngModelOptions]="{standalone: true}" class="search-box select"
                   placeholder="Skill Level">
                   @for (data of expertiseLevels; track data) {

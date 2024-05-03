@@ -1,6 +1,7 @@
 const collection = require('../Utilities/connection');
 const events = {};
 // const eventsCollection = await collection.getEventCollection();
+
 // Verify the user credentials and modify the last logout
 events.getEventsList = () => {
     return collection.getCollection().then((users)=>{
@@ -20,6 +21,7 @@ events.getEventsList = () => {
 
     })
 }
+
 // Verify the user credentials and modify the last logout
 events.getEventById = (eventId) => {
     return collection.getCollection().then((users)=>{
@@ -67,6 +69,7 @@ events.registerEvent = (data) => {
 
     })
 }
+
 events.updateEvent = (data) =>{
     return collection.getEventCollection().then((eventColl) => {
         return eventColl.find({"eventId": data.eventId}).then(events=>{
@@ -80,6 +83,7 @@ events.updateEvent = (data) =>{
 
     })
 }
+
 module.exports = events;
 
 // async function getAllEventsWithReviews() {
